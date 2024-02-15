@@ -20,23 +20,23 @@ class VenuesController < ApplicationController
     @the_venue.address = params.fetch("query_address")
     @the_venue.name = params.fetch("query_name")
     @the_venue.neighborhood = params.fetch("query_neighborhood")
-    @the_venue.save]
-    #redirect_to("/venues/#{@the_venue.name}")
-    render({ :template => "venue_templates/details" })
+    @the_venue.save
+    redirect_to("/venues/#{@the_venue.id}")
+    #render({ :template => "venue_templates/details" })
   
 
   end
   
   def update
-    the_id = params.fetch("venue_id")
+    the_id = params.fetch("the_id")
 
-    @venue = Venue.where({ :id => the_id })
-    venue.address = params.fetch("query_address")
-    venue.name = params.fetch("query_name")
-    venue.neighborhood = params.fetch("query_neighborhood")
-    venue.save
+    @venue = Venue.where({ :id => the_id }).first
+    @venue.address = params.fetch("query_address")
+    @venue.name = params.fetch("query_name")
+    @venue.neighborhood = params.fetch("query_neighborhood")
+    @venue.save
     
-    redirect_to("/venues/#{venue.id}")
+    redirect_to("/venues/#{@venue.id}")
   end
 
   def delete_venue

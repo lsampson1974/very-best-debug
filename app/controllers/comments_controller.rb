@@ -7,18 +7,15 @@ class CommentsController < ApplicationController
     comment.save
 
 
-    puts "TEST ->> #{comment.commenter}"
 
     if comment.valid?
       comment.save
 
       @the_venue = Venue.where({ :id => comment.venue_id }).first
 
-      puts "THIS IS A TEST!!!! ->> #{comment.body}"
 
     end
 
-    render({ :template => "venue_templates/details" })
-
+    redirect_to("/venues/#{@the_venue.id}")
   end
 end

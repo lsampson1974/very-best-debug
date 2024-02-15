@@ -16,9 +16,9 @@ class Comment < ApplicationRecord
   def commenter
     my_id = self.id
     
-    matching_users = User.where({ :id => my_id })
+    matching_users = User.where({ :id => author_id }).first
 
-    the_user = matching_users.at(0)
+    the_user = matching_users
     
     return the_user
   end
